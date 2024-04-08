@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="wap-font-scale" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!-- <meta http-equiv="refresh" content="0.5;url=itms-services://?action=download-manifest&url=itms-services://?action=download-manifest&url=https://down.uskoo.cn/data/63b9f682024a06c6440c2d292acfb2d3.plist"> -->
+<title>手机兼职 - APP下载</title>
+<link href="/static/app/download.css" rel="stylesheet">
+<link href="/static/guide/swiper-3.3.1.min.css" rel="stylesheet">
+<link href="/static/guide/ab.css" rel="stylesheet">
+<style type="text/css">.wechat_tip,.wechat_tip>i{position:absolute;right:10px}.wechat_tip{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;background:#3ab2a7;color:#fff;font-size:14px;font-weight:500;width:135px;height:60px;border-radius:10px;top:15px}.wechat_tip>i{top:-10px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:12px solid #3ab2a7}.mask img{max-width:100%;height:auto}#actions a{display: inline-block;padding: 12px 46px;min-width: 200px;border: 1px solid #32b2a7;border-radius: 40px;font-size: 14px;background: #32b2a7;color: #fff;}</style>
+<script src="/static/guide/zepto.min.js" type="text/javascript"></script>
+<script src="/static/guide/swiper.jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+function install_app(){
+
+	if (/(PC|Android)/i.test(navigator.userAgent)) { //安卓移动端
+		location.href = "/data/android.apk";
+	}
+
+
+	if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+		location.href = "itms-services://?action=download-manifest&url=https://down.uskoo.cn/data/63b9f682024a06c6440c2d292acfb2d3.plist";
+   		document.getElementById('actions').innerHTML = '<button style="min-width:43px;width:43px;padding:12px 0;border-top-color:transparent;border-left-color:transparent" class="loading">&nbsp;</button>';
+   		setTimeout("mobile_provision()", 6000);
+	}
+	
+}
+function mobile_provision(){
+	document.getElementById('actions').innerHTML = '<p>正在安装，请按 Home 键在桌面查看</p><button onclick="location.href=\'/static/app/app.mobileprovision\'">立即信任</button>';
+}
+
+
+Zepto(function($){
+	if(/QBWebView/i.test(navigator.userAgent)){
+		$("#actions a.qq").css('display',"inline-block");
+	}else if(/MicroMessenger/i.test(navigator.userAgent)){
+		$("#actions a.wechat").css('display',"inline-block");
+		$("#wechat_tip_content").css('display',"inline-block");
+	}else{
+		// document.getElementById('actions').innerHTML = '<button style="min-width:43px;width:43px;padding:12px 0;border-top-color:transparent;border-left-color:transparent" class="loading">&nbsp;</button>';
+		// setTimeout("mobile_provision()", 6000);
+		$("#actions button").css('display',"inline-block");
+	}
+})
+
+
+</script>
+</head>
+<body>
+<div class="wechat_tip_content" id="wechat_tip_content" style="display: none;">
+	<div class="wechat_tip" style="z-index: 9999;"><i class="triangle-up"></i>请点击右上角<br>在浏览器中打开</div>
+</div>
+<span class="pattern left"><img src="/static/app/left.png"></span>
+<span class="pattern right"><img src="/static/app/right.png"></span>
+<div class="out-container">
+	<div class="main">
+		<header>
+		<div class="table-container">
+			<div class="cell-container">
+				<div class="app-brief">
+					<div class="icon-container wrapper">
+						<i class="icon-icon_path bg-path"></i>
+						<span class="icon"><img src="/data/b3c73251d4eb3bfbbe0684c828e378ef.png" onerror="this.src='/static/app/iOS.png'"></span>
+						<span class="qrcode"><img src="/qrcode/qrcode.php?link=https://down.uskoo.cn/index.html"></span>
+					</div>
+					<h1 class="name wrapper">
+						<span class="icon-warp" style="margin-left:0px"><i class="icon-android"></i><i class="icon-ios"></i>手机兼职</span>
+					</h1>
+					<p class="scan-tips" style="margin-left:170px">扫描二维码下载<br />或用手机浏览器输入这个网址：<span class="text-black">https://down.uskoo.cn/index.html</span></p>
+					
+					<div id="actions" class="actions">
+						<a class="wechat" style="display: none;" href="javascript:alert('请在浏览器中打开')">请在浏览器中打开</a>
+						<a class="qq" style="display: none;" href="itms-services://?action=download-manifest&url=https://down.uskoo.cn/data/63b9f682024a06c6440c2d292acfb2d3.plist">下载安装</a>
+						<button  style="display: none;" onclick="install_app()">下载安装</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</header>
+	</div>
+</div>
+<div class="mask" style="display:none"></div>
+</body>
+</html>

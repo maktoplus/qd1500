@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>分享好友</title>
+<link rel="stylesheet" href="__WCSS__/style.css">
+<link rel="stylesheet" href="__WCSS__/meCen.css">
+<link href="__WCSS__/mui.min.css" rel="stylesheet"/>
+<script src="__WJS__/jquery1.11.1.min.js"></script>
+<script type="text/javascript" src="__COM__/layer/layer.js"></script>
+<script type="text/javascript" src="__COM__/js/index.js" ></script>
+<style type="text/css">
+.header {
+    background: #447df5;
+    top: 0;
+    box-shadow: 0 0px 0px #ccc;
+    -webkit-box-shadow: 0 0px 0px #ccc;
+}
+.h1{
+    color: #fff;
+}
+.qrCodeGro img {
+    width: 55%;
+    margin: 10px auto;
+    display: block;
+}
+.qrCodeGro {
+     width: 100%; 
+     padding: 0; 
+    margin-top: 20px;
+    /*background: #fff;*/
+    /*border-radius: 10px;*/
+}
+</style>
+<body>
+    <header class="mui-bar mui-bar-nav header">
+            <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.go(-1)"></a>
+            <h1 class="mui-title h1">分享好友</h1>
+    </header>   
+     <div class="big_width80">
+	     <div class="qrCodeGro qrCodeGroa" style="margin-top: 80px;">
+	     	<img src="{$urel}">
+	     	<p class="" style="font-size:15px;color:#666;">扫描二维码即可分享好友哟</p>
+	     </div>
+
+	     <div class="fxfuzanj" style="margin-top:0px;">
+             <span hidden id="txt">{$aurl}</span>
+             <a href="javascript:void(0)"  onclick="copyUrl();" style="text-decoration:none;font-size:15px;    color: #666;">点此复制推广链接</a>
+         </div>
+
+	</div>
+    <script type="text/javascript">
+        function copyUrl()
+        {
+            var txt=$("#txt").text();
+            copy(txt);
+        }
+
+        function copy(message) {
+            var input = document.createElement("input");
+            input.value = message;
+            document.body.appendChild(input);
+            input.select();
+            input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+            document.body.removeChild(input);
+            msg_alert("复制成功");
+        }
+    </script>
+
+</body>
+</html>

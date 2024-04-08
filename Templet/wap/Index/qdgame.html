@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://103.200.29.54/index.html#tabbar-with-chat -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title>承兑接单</title>
+		<link href="/Public/home/wap/css/mui.min.css" rel="stylesheet">
+		<link href="/Public/home/wap/css/app.css" rel="stylesheet">
+		<link href="/Public/home/wap/css/swiper.min.css" rel="stylesheet">
+		<link href="/Public/home/wap/css/qdgame.css" rel="stylesheet">
+		<link href="/Public/home/wap/css/1.css" rel="stylesheet">
+		<script type="text/javascript" src="/Public/home/common/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/Public/home/common/layer/layer.js"></script>
+		<script type="text/javascript" src="/Public/home/common/js/index.js"></script>
+		<script type="text/javascript" src="/Public/home/common/js/swiper.min.js"></script>
+	</head>
+	<style>
+		.tbTitle span:nth-child(1), .tbContent span:nth-child(1) {
+			max-width: 3rem;
+		}
+		.qds {
+			border: solid 1px;
+			border-color: #fff;
+			height: 1.5rem;
+			line-height: 1.5rem;
+			background-color: #fff;
+			margin-top: .5rem;
+			color: #000;
+		}
+		.show span {
+			padding: .1rem .2rem;
+			border-radius: .2rem;
+			font-weight: bold;
+			color: #fff;
+			font-size: 1rem;
+			letter-spacing: .1rem;
+			background: linear-gradient(45deg, #081256, #370080);
+		}
+		.show i {
+			margin: 0 .1rem;
+			font-weight: bold;
+			font-style: normal;
+			color: #fff;
+			font-size: 1rem;
+		}
+	</style>
+	<body style="background:#fff;" class="mui-ios mui-ios-11 mui-ios-11-0">
+		<div id="tabbar-with-chat" class="mui-control-content mui-active" style="padding-bottom: 4rem;overflow: auto;">
+			<header class="mui-bar mui-bar-nav header">
+				<h1 class="mui-title h1">开始接单</h1>
+			</header>
+			<div class="mui-card-content qd user_info">
+				<p class="rowInfo"><span>账号：</span><span class="txtFF">{$ulist.account}</span></p>
+				<p class="rowInfo"><span>总余额：</span><span class="txtFF">{$ulist.money}</span></p>
+				<p class="rowInfo"><span>手动余额：</span><span class="txtFF">{$ulist.lock_money}</span></p>
+				<!--<p class="rowInfo"><span>动态积分：</span><span class="txtFF">{$ulist.trend_money}</span></p>-->
+				<p class="rowInfo"><span>总收益：</span><span class="txtFF">{$ulist.zsy}</span></p>
+			</div>
+			<div class="mui-card-content qd money_info">
+				<if condition="empty($rob_res)">
+					<span>暂无接单的信息</span>
+					<else/>
+					<volist name="rob_res" id="r" key="key">
+						<div class="fristRow">
+							<if condition="$key gt 0">
+								<span class="txtNum">数量：<span class="txtCount txtFF">{$r.umoney}</span></span>
+								<div id="show{$key}" class="show" time="{$r.endtime|date='Y-m-d H:i:s',###}"></div>
+							</if>
+						</div>
+					</volist>
+				</if>
+
+				<!--<div class="secondRow">-->
+                    <!--<if condition="$arr">-->
+                        <!--<volist name="arr" id="ar">-->
+					<!--<p class="rowInfo">-->
+								<!--<span>金额<span class="txtFF">{$ar['num']}</span>余额</span><span><span class="txtFF">{$ar['num']*$qd_yjjc}</span>佣金</span>-->
+                    <!--</volist>-->
+                    <!--<else/>-->
+                    <!--<span>暂无接单的信息</span>-->
+                    <!--</if>-->
+
+                    <!--</p>-->
+				<!--</div>-->
+			</div>
+			<div class="span"><marquee style="color:#da8e25" class="noticeSpan" scrollamount="4">公告:{$notice}</marquee></div>
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-danger zidong" id="autopipei" onclick="zdqd()">点击开始</button>
+			</div>
+			<div class="mui-card-content qd infoDiv">
+				<div class="tbTitle">
+					<span style="width: 4rem">姓名</span>
+					<span style="width: 3rem">类型</span>
+					<span style="width: 3rem">金额</span>
+					<span style="width: 3rem">操作</span>
+				</div>
+				<div class="" id="">
+					<div class="">
+						<if condition="empty($somebills)">
+							<div class="">
+								暂无订单
+							</div>
+							<else/>
+							<volist name="somebills" id="s">
+								<div class="">
+								<div class="tbContent">
+									<span style="width: 4rem">{$s.uname}</span>
+								<span style="width: 3rem">
+									<if condition="$s['class'] eq 1">
+										微信
+										<elseif condition="$s['class'] eq 2"/>
+										支付宝
+										<else/>
+										银行卡
+									</if>
+								</span>
+								<span style="width: 3rem">{$s['price']}</span>
+								<span style="width: 3rem"><p class="qds " onclick="manual({$s['id']})">抢单</p></span>
+								<!--<span>{$s.finishtime|date='Y-m-d H:i:s',###}</span>-->
+								</div>
+								</div>
+							</volist>
+						</if>
+						<!--<div class="">-->
+							<!--<div class="tbContent">-->
+								<!--<span>丽芬</span>-->
+								<!--<span>1000.00</span>-->
+								<!--<span>10</span>-->
+								<!--<span>2019/09/25 08:40:05</span>-->
+							<!--</div>-->
+						<!--</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab">
+			<!-- 	<a class="mui-tab-item" href="{:U('Index/index')}">
+                    <span class="mui-icon mui-icon-home"></span>
+                    <span class="mui-tab-label">首页</span>
+                </a> -->
+			<a class="mui-tab-item mui-active"  href="{:U('Index/qdgame')}">
+				<span class="mui-icon mui-icon-paperplane"></span>
+				<span class="mui-tab-label">承兑接单</span>
+			</a>
+
+			<a class="mui-tab-item "  href="{:U('Index/shoudan')}">
+				<span class="mui-icon mui-icon-bars"></span>
+				<span class="mui-tab-label">工作记录</span>
+			</a>
+			<a class="mui-tab-item" href="{:U('User/index')}">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</nav>
+	</body>
+	<script type="text/javascript">
+		var num = {$count};
+		for (var i = 1;i<=num;i++){
+		    var time = $("#show"+i).attr('time');
+		    console.log(time)
+            TimeDown("show"+i,time);
+            function TimeDown(id, endDateStr) {
+                var endDate = new Date(endDateStr);
+                var nowDate = new Date();
+                var totalSeconds = parseInt((endDate - nowDate) / 1000);
+                var days = Math.floor(totalSeconds / (60 * 60 * 24));
+                var modulo = totalSeconds % (60 * 60 * 24);
+                var hours = Math.floor(modulo / (60 * 60));
+                modulo = modulo % (60 * 60);
+                var minutes = Math.floor(modulo / 60);
+                var seconds = modulo % 60;
+                document.getElementById(id).innerHTML = "<p><span>"+formatTime(days) + "</span><i>:</i><span>" + formatTime(hours) + "</span><i>:</i><span>" + formatTime(minutes) + "</span><i>:</i><span>" + formatTime(seconds)+"</span>";
+                if(days<=0&&hours<=0&&minutes<=0&&seconds<=0){
+                    clearTimeout(t);
+                }else{
+                    var t = setTimeout(function () {
+                        TimeDown(id, endDateStr);
+                    }, 1000)
+                }
+            }
+		}
+
+		function formatTime(time){
+			if(time>=0&&time<10){
+				return time = '0'+time
+			}else if(time>10){
+				return time
+			}else{
+				return '00'
+			}
+		}
+		var mySwiper = new Swiper('#swiper-container',{
+			direction: 'vertical',
+			loop: true,
+			autoplay: {
+				disableOnInteraction: false,
+				delay: 1800
+			}
+		});
+		function zdqd(){
+			layer.open({
+				type:1,
+				id: 'layerDemo1',
+				area:['300px','500px'],
+				btn: ['确 定', '取 消'],
+		        yes: function(){
+
+				    var num = $('#num').val();
+				    var type = $('#type').val();
+				    var qdclass = $('#qdclass').val();
+                    if(num <=0 || num == '' || num == null){
+                        layer.msg('填写正确的数量');return false;
+                    }
+				    $.post('/Index/qdoption',{num:num,type:type,qdclass:qdclass},function (data) {
+                        layer.msg(data.msg);
+				        if(data.status == 1){
+                            layer.closeAll();
+                            layer.msg(data.msg);
+                            setTimeout(function(){  //使用  setTimeout（）方法设定定时2000毫秒
+                                window.location.reload();//页面刷新
+                            },1000);
+                        }
+                        console.log(data);return false;
+                    })
+		        },
+		        btn2: function(){
+		          	layer.closeAll();
+		        },
+				title:'接单信息',
+				content:$("#detailsForm").html()
+			});
+		}
+	</script>
+	<script type="text/html" id="detailsForm">
+		<div>
+			<p class="ullei">提示:最低投入{$qd_minmoney}余额</p>
+			<ul class="mui-table-view mui-table-view-radio ullei">
+				<li class="mui-table-view-cell mui-selected " id="checkedclass_wx" onclick="checkedclass_wx(0)">
+					<a class="mui-navigate-right">
+					自动
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="checkedclass_zfb" onclick="checkedclass_zfb(1)">
+					<a class="mui-navigate-right">
+						手动
+					</a>
+				</li>
+			</ul>
+
+			<ul class="mui-table-view mui-table-view-radio ullei">
+				<li class="mui-table-view-cell mui-selected " id="zfb" onclick="class_zfb(2)">
+					<a class="mui-navigate-right">
+						支付宝
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="wx" onclick="class_wx(1)">
+					<a class="mui-navigate-right">
+						微信
+					</a>
+				</li>
+				<li class="mui-table-view-cell" id="yhk" onclick="class_bank(3)">
+					<a class="mui-navigate-right">
+						银行卡
+					</a>
+				</li>
+			</ul>
+			<input type="hidden" name="type" id="type" value="0">
+			<input type="hidden" name="qdclass" id="qdclass" value="1">
+			<p class="ullei txtNumP">
+				<input type="text" id="num" placeholder="请输入投入的数量"/>
+			</p>
+		</div>
+	</script>
+	<script>
+		function checkedclass_wx(num){
+            $('#zfb').parent().show();
+			$('#checkedclass_wx').addClass("mui-selected");
+			$('#checkedclass_zfb').removeClass("mui-selected");
+			$('#checkedclass_bank').removeClass("mui-selected");
+			$('#type').val(num);
+		}
+		function checkedclass_zfb(num){
+		    $('#zfb').parent().hide();
+			$('#checkedclass_zfb').addClass("mui-selected");
+			$('#checkedclass_wx').removeClass("mui-selected");
+			$('#checkedclass_bank').removeClass("mui-selected");
+			$('#type').val(num);
+		}
+		// function checkedclass_bank(){
+		// 	$('#checkedclass_bank').addClass("mui-selected");
+		// 	$('#checkedclass_zfb').removeClass("mui-selected");
+		// 	$('#checkedclass_wx').removeClass("mui-selected");
+		// 	$('#qdclass').val(3);
+		// }
+
+        function class_wx(num){
+            $('#wx').addClass("mui-selected");
+            $('#yhk').removeClass("mui-selected");
+            $('#zfb').removeClass("mui-selected");
+            $('#qdclass').val(num);
+            console.log($('#qdclass').val());
+        }
+        function class_zfb(num){
+            $('#zfb').addClass("mui-selected");
+            $('#yhk').removeClass("mui-selected");
+            $('#wx').removeClass("mui-selected");
+            $('#qdclass').val(num);
+            console.log($('#qdclass').val());
+        }
+        function class_bank(){
+            $('#yhk').addClass("mui-selected");
+            $('#zfb').removeClass("mui-selected");
+            $('#wx').removeClass("mui-selected");
+            $('#qdclass').val(3);
+            console.log($('#qdclass').val());
+        }
+
+        function manual(id){
+		    $.post('/Index/manual',{id:id},function(data){
+                layer.msg(data.msg);
+                if(data.status == 1){
+                    window.location.reload();
+				}
+				console.log(data)
+			},'json')
+		}
+	</script>
+
+</html>

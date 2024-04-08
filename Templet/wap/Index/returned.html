@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+
+    <link href="__WCSS__/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@1.6/lib/index.css">
+
+	<style>
+		.mui-input-group:before{
+			height:0px
+		}
+		.mui-input-group:after{
+			height: 0px;
+		}
+		.header{
+			background:#447df5;
+			top:0;
+			box-shadow:0 0px 0px #ccc;
+			-webkit-box-shadow:0 0px 0px #ccc;
+		}
+		.h1{
+			font-family:'微软雅黑';
+			color: #fff;
+		}
+		.form{
+/*			position:absolute;
+			top:15%;
+			height:0px;
+			width:80%;
+			left:0px;
+			right:0px;
+			margin: auto;*/
+		}
+		.formdiv{
+			/*height:em;*/
+			border-radius:30px;
+			background-color:#fff;
+			/*margin-bottom:30px;*/
+		}
+		.formimg{
+			position:absolute;
+			width: 35px;
+			margin-left:15px;
+			margin-top:5px;
+		}
+		.forminput{
+			color:#0062CC;
+			/*margin-top:2px;*/
+			/*margin-left:18%;*/
+			font-size:0.8em;
+			/*font-family:'微软雅黑';*/
+		}
+		.button{
+			position:absolute;
+			background:#fff;
+			font-family:'微软雅黑';
+			left:60%;
+			top:5px;
+			font-size:0.9em;
+			color:#242424;
+			width:35%;
+			border:0px solid;
+		}
+.button2 {
+     line-height: 2em; 
+    /* font-size: 0.9em; */
+    width: 50%;
+    font-family: '微软雅黑';
+    /* border-radius: 30px; */
+    border: 0px solid;
+    /* background: #4567f1; */
+    /* padding: 0; */
+    margin: 0;
+    float: left;
+    background: none;
+    color: #007aff;
+    border-radius: 0;
+}
+.mui-button-row {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding-top: 0;
+    /*text-align: center;*/
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+.mui-btn-blue.mui-active:enabled, .mui-btn-blue:enabled:active, .mui-btn-primary.mui-active:enabled, .mui-btn-primary:enabled:active, input[type=submit].mui-active:enabled, input[type=submit]:enabled:active {
+    /*color: #fff;*/
+    border: 0;
+    /*background-color: #0062cc;*/
+}
+.mui-input-group .mui-input-row {
+    height: 45px;
+}
+.mui-input-group .mui-input-row input{
+	height: 45px;
+}
+
+	</style>
+</head>
+<body style="background:#FFF;">
+
+	<form class="mui-input-group form"  name="AddUser" action="">
+		<div class="mui-input-row formdiv">
+			<input type="text" class="forminput" value="" name="" placeholder="请输入开户姓名">
+		</div>
+		<div class="mui-input-row formdiv">
+			<input type="text" class="forminput" name="" placeholder="请输入开户银行">
+		</div>
+		<div class="mui-input-row formdiv">
+			<input type="text" class="forminput"  name="" placeholder="请输入银行卡号后六位">
+		</div>
+		<div class="mui-input-row formdiv">
+			<input type="text" class="forminput"  name="" placeholder="请输入回款金额">
+		</div>
+		<input type="hidden" class="forminput"  name="rid">
+	</form>
+	<div class="mui-button-row">
+		<button type="button" class="mui-btn  mui-btn-primary button2" id="submit" style="border-right: 1px solid rgba(0,0,0,.1);">确认</button>
+		<button type="button" class="mui-btn  mui-btn-primary button2" id="closeIframe">取消</button>
+		
+	</div>
+</body>
+ <script type="text/javascript" src="__COM__/js/jquery-1.9.1.min.js" ></script>
+ <script type="text/javascript" src="__COM__/layer/layer.js" ></script>
+ <script type="text/javascript">
+
+
+var index = parent.layer.getFrameIndex(window.name);
+ $(function(){
+
+
+	$('#closeIframe').click(function(){
+	    parent.layer.close(index);
+	});
+
+
+
+ });
+
+
+    function setps(){
+        var thisform=document.forms['AddUser'];
+		var   moblie=thisform.moblie.value;
+        var   password=thisform.password.value;       
+        var   c_password=thisform.c_password.value;
+
+		if(password=='' || password==null){
+            layer.msg('请输入密码');
+            return false;
+        }
+		if(c_password=='' || c_password==null){
+            layer.msg('请再次输入密码');
+            return false;
+        }
+		if(password != c_password){
+            layer.msg('两次密码不一致');
+            return false;
+        }
+		
+        var post_url = $("form[name='AddUser']").attr('action');
+        var post_data= $("form[name='AddUser']").serialize();
+		$("#submit").attr('disabled',true)
+        $.ajax({
+            type: "POST",
+            url: post_url,
+            data:post_data,
+            dataType: "json",
+            success: function(data){
+                if(data.status==1){
+                    layer.msg(data.msg);  //,data.url);
+					setTimeout(function (args) {
+						window.location.href = "{:U('User/ziliao')}";
+					}, 3000); 
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        });
+    }
+
+</script>	
+</html>

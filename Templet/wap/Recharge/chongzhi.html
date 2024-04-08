@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="__WCSS__/mui.min.css" rel="stylesheet"/>
+
+	<style>
+		.body{
+			line-height: px;
+		}
+		.mui-table-view-cell:after{
+			left: 0px;
+			/*background-color:#292828;*/
+		}
+		.mui-table-view:before{
+			/*background-color:#292828;*/
+		}
+		.mui-table-view:after{
+			/*background-color:#292828;*/
+		}
+		.header{
+			background:#447df5;
+			top:0;
+			box-shadow:0 0px 0px #ccc;
+			-webkit-box-shadow:0 0px 0px #ccc;
+		}
+		.headh1{
+			/*font-family:'微软雅黑';*/
+			color: #fff;
+		}
+		.fangshi{
+			/*margin-left:10%;*/
+			/*font-family:'微软雅黑';*/
+			color:#333;
+		}
+		.ulfangshi{
+			margin-top:44px;
+			/*background:#1a1d2e;*/
+			line-height:2em;
+		}
+		.ulfangshi li{
+			padding: 3px 10px;
+			/*line-height: 2.5em;*/
+		}
+		.mui-table-view-cell>a:not(.mui-btn) {
+    position: relative;
+    display: block;
+     overflow: hidden; 
+     margin: 0; 
+     padding: inherit; 
+     white-space: nowrap; 
+    text-overflow: ellipsis;
+    color: inherit;
+}
+.mui-navigate-right:after, .mui-push-right:after {
+    right: 0;
+    content: '\e583';
+}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  href="javascript:history.go(-1)"></a>
+			<h1 class="mui-title headh1">充值方式</h1>
+	</header>	
+		<ul class="mui-table-view ulfangshi">
+
+			<!--<li class="mui-table-view-cell mui-collapse-content">-->
+		       <!--&lt;!&ndash;<a href="wxcz.html" class="mui-navigate-right">&ndash;&gt;-->
+				<!--<a href="{:U('Recharge/wxcz')}" class="mui-navigate-right">-->
+		        	<!--<p class="fangshi">微信充值</p>-->
+		        <!--</a>-->
+		    <!--</li>  -->
+			<li class="mui-table-view-cell mui-collapse-content">
+				<!--<a href="yhkcz.html" class="mui-navigate-right">-->
+				<a href="{:U('Recharge/yhkcz')}" class="mui-navigate-right">
+					<p class="fangshi">USDT充值</p>
+				</a>
+			</li>
+		</ul>
+			
+</body>
+</html>

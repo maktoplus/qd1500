@@ -1,0 +1,141 @@
+<extend name="Public/layout"/>
+<block name="style" >
+    <link rel="stylesheet" type="text/css" href="__LYUI__/css/lyui.extend.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/style.css">
+</block>
+
+<block name="main">
+   <div id="main" class="col-xs-12 col-sm-9 main" style="overflow-y: scroll;">
+        <ul class="breadcrumb">
+            <li><i class="fa fa-map-marker"></i></li>
+
+            <li class="text-muted">会员管理 /  每日统计</li>
+
+        </ul>
+
+        <!-- 主体内容区域 -->
+        <div class="tab-content ct-tab-content">
+            <div style="    position: absolute;width: 100%;height: 100%;display: flex;z-index: 9999;justify-content: center;background: #fff;align-items:center;"  id="gif">
+                <img src="/public/libs/imgs/logo.gif" height="50%" alt="">
+            </div>
+            <div class="panel-body">
+                <div class="builder formbuilder-box">
+                    <div class="form-group"></div>
+                    <div class="builder-container" >
+                            <div class="row" >
+                                <div class="col-xs-12">
+                                    <form action="__SELF__" method="post" class="form-horizontal form form-builder">
+                                        <div class="form-type-list">
+                                            <div class="form-group hidden item_id ">
+                                                <label class="left control-label">ID：</label>
+                                                <div class="right">
+                                                    <input type="hidden" class="form-control input" name="userid" value="{$info.userid}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">上级：</label>
+                                                <div class="right">
+                                                    <?php echo $info['pid'];?>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">账号：</label>
+                                                <div class="right">
+                                                    <input type="text" class="form-control input" name="account" value="{$info.account}" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">充值数量：</label>
+                                                <div class="right">
+                                                    <!--{$user_count|default=0}-->
+                                                    <input type="text" class="form-control input" name="account" value="{$data.day_recharge}" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+											 <div class="form-group item_title ">
+                                                <label class="left control-label">提现数量：</label>
+                                                 <div class="right">
+                                                     <input type="text" class="form-control input" name="account" value="{$data.day_withdraw}" readonly="readonly" placeholder="账号" >
+                                                 </div>
+                                            </div>
+
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">跑分奖金：</label>
+                                                <div class="right">
+                                                    <input type="text" class="form-control input" name="account" value="{$data.running_water}" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+											<div class="form-group item_title ">
+                                                <label class="left control-label">团队佣金：</label>
+                                                <div class="right">
+                                                    <input type="text" class="form-control input" name="account" value="{$data.total}" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+
+											<div class="form-group item_title ">
+                                                <label class="left control-label">跑分流水：</label>
+                                                <div class="right">
+                                                    <input type="text" class="form-control input" name="account" value="{$data.roborder_num}" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">伞下充值数量：</label>
+                                                <div class="right" >
+                                                    <input type="text" id="recharge" class="form-control input" name="account" value="0" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">伞下提现数量：</label>
+                                                <div class="right" >
+                                                    <input type="text" id="day_withdraw" class="form-control input" name="account" value="0" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">伞下跑分奖金：</label>
+                                                <div class="right" >
+                                                    <input type="text" id="running_water" class="form-control input" name="account" value="0" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">伞下团队佣金：</label>
+                                                <div class="right" >
+                                                    <input type="text" id="total" class="form-control input" name="account" value="0" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group item_title ">
+                                                <label class="left control-label">伞下跑分流水：</label>
+                                                <div class="right" >
+                                                    <input type="text"  id="roborder_num" class="form-control input" name="account" value="0" readonly="readonly" placeholder="账号" >
+                                                </div>
+                                            </div>
+             
+                                        <div class="form-group"></div>
+                                    </div>
+                                </form>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <i class="layui-icon layui-icon-loading-1 layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>
+    </div>                   
+</div>
+    <script>
+        $(function(){
+            $.post('/Admin/User/day_log/userid/'+{$info.userid},{i:0},function(data){
+                $('#gif').hide();
+                $('#recharge').val(data.day_recharge);
+                $('#running_water').val(data.running_water);
+                $('#total').val(data.total);
+                $('#day_withdraw').val(data.total);
+                $('#roborder_num').val(data.roborder_num);
+            })
+        })
+    </script>
+</block>
+<block name="script">
+    <script type="text/javascript" src="__LYUI__/js/lyui.extend.min.js"></script>
+</block>

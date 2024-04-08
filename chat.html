@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" conteupnt="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title></title>
+    <script>
+        function p(n) {
+            var m = RegExp('[?&]' + n + '=([^&]*)').exec(window.location.search);
+            return m && decodeURIComponent(m[1].replace(/\+/g, ' '));
+        }
+        var url = '//' + p('tuh') + '.198kf.com/i/chat-' + p('l');
+        if (p('codeId')) url += '_' + p('codeId');
+        url += '.html' + location.search + location.hash;
+        document.write("<frameset rows='*' cols='*' frameborder='no' border='0' framespacing='0'>");
+        document.write("<frame src='"+ url +"' title='mainFrame' />");
+        document.write("</frameset>");
+    </script>
+</head>
+<noframes>
+    <body>
+    </body>
+</noframes>
+</html>

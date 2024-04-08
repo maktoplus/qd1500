@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+
+    <link href="__WCSS__/mui.min.css" rel="stylesheet"/>
+
+	<style>
+		.body{
+			line-height: px;
+		}
+		.mui-table-view-cell:after{
+			left: 0px;
+			background-color:#292828;
+		}
+		.mui-table-view:before{
+			background-color:#292828;
+		}
+		.mui-table-view:after{
+			background-color:#292828;
+		}
+		.header{
+			background:#447df5;
+			top:0;
+			box-shadow:0 0px 0px #ccc;
+			-webkit-box-shadow:0 0px 0px #ccc;
+		}
+		.h1{
+			font-family:'微软雅黑';
+			color: #fff;
+		}
+		.button{
+			position:absolute;
+			color:aquamarine;
+			font-family:'微软雅黑';
+			width:80%;
+			line-height:2em;
+			border-radius:20px;
+			background:linear-gradient(45deg,BLUE,purple);
+			border:0px solid;
+			top:25%;
+			left: 10%;
+		}
+		.ul{
+			margin-top:15%;
+			background:#1a1d2e;
+			line-height:2em;
+		}
+		.li{
+			margin-left:10%;
+			font-family:'微软雅黑';
+			color:aquamarine;
+		}
+		.right{
+			position:absolute;
+			right:35px;
+			bottom:12px;
+			font-family:'微软雅黑';
+			color:#fff;
+		}
+	</style>
+</head>
+<body style="background:#1a1d2e;">
+	<a id="ibangkf" href="http://www.ibangkf.com">客服系统</a>
+<script type="text/javascript" src="http://c.ibangkf.com/i/c-kakapaofen.js"></script>
+	
+</body>
+ <script type="text/javascript" src="Public/home/common/js/jquery-1.9.1.min.js" ></script>
+ <script type="text/javascript" src="Public/home/common/layer/layer.js" ></script>
+ <script type="text/javascript">
+	ib_wopen();
+	function loginout(){
+		window.location.href="{:U('User/Loginout')}";
+	}
+ </script>
+</html>

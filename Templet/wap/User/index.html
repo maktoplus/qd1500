@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)http://103.200.29.54/index.html#tabbar-with-contact -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>个人中心</title>
+    
+    <link href="__WCSS__/mui.min.css" rel="stylesheet">
+	<link href="__WCSS__/app.css" rel="stylesheet">
+	<link href="__WCSS__/userindex.css" rel="stylesheet">
+	<style type="text/css">
+
+		.imglist {
+		    position: absolute;
+		    width: 25px;
+		    top: 12px;
+		}
+		.user-myimg{
+			float: left;
+			width: 80px;
+			padding: 20px 10px;
+		}
+		.user-name{
+			/*float: right;*/
+			color: #fff;
+			font-size: 17px;
+			padding: 15px 0 10px;
+		}
+		.yqmtitle{
+			display: block;
+		}
+		.user-yqm span{
+			display: inline-block;
+			color: #fff;
+		}
+		.user-yqm span.yqmtitle{
+			display: block;
+		}
+		.jibie {
+		    position: absolute;
+		    background: #4567f1;
+		    color: #fff;
+		    top: 12px;
+		    right: 10px;
+		    margin-left: unset;
+		    line-height: 1em;
+		    border-radius: 3px;
+		    border: 0px solid;
+		}
+		.user-fz{
+		    display: inline-block;
+		    background: #4567f1;
+		    color: #fff;
+		    margin-left: 10px;
+		    padding: 0 15px;
+		    /* line-height: 1em; */
+		    border-radius: 3px;
+		    border: 0px solid;
+		}
+		#layerDemo1 .ullei {
+			color: #1a1d2e;
+			margin-top: 10px;
+			background: #fff;
+		}
+		p.ullei {
+			margin: 1rem;
+			padding: 1rem;
+			color: #1a1d2e;
+			letter-spacing: .1rem;
+			background: #fff;
+		}
+		.txtNumP input {
+			padding: 0 15px;
+			margin-bottom: 0;
+			background: #fff;
+			color: #1a1d2e;
+			border: 0;
+		}
+		.layui-layer-btn a.layui-layer-btn0 {
+			/* background: linear-gradient(45deg, #009688, #5fb878); */
+			background: linear-gradient(45deg, purple, #5fb878);
+		}
+		.layui-layer-btn a.layui-layer-btn1 {
+			/* background: linear-gradient(45deg, BLUE, purple); */
+			background: linear-gradient(45deg, #009688, purple);
+		}
+		p.txtNumP {
+			margin-top: 20px !important;
+			padding: .28rem;
+		}
+		.layui-layer-btn .layui-layer-btn0, .layui-layer-btn .layui-layer-btn1 {
+			font-family: '微软雅黑';
+			border-radius: 30px;
+			border: 0px solid;
+			color: #fff;
+			font-size: .9rem;
+		}
+
+
+	</style>
+</head>
+<body class="mui-ios mui-ios-11 mui-ios-11-0">
+		
+			<!--我的-->
+	<div id="tabbar-with-contact" class="mui-control-content mui-active">
+		<header class="mui-bar mui-bar-nav header" style="background-color: #4567f1">
+				<h1 class="mui-title h1">个人中心</h1>
+		</header>
+		<div class="mui-card-content my">
+			<img src="../Public/home/wap/images/logoer.png" class="user-myimg">
+			<div class="user-name">{$list.account}</div>
+				<!--<div class="user-name">{$list.account}（{$list.username}）</div>-->
+		
+			<div class="user-yqm">
+				<span class="yqmtitle">邀请码</span>
+				<span id="txt">{$list.u_yqm}</span>
+				<a href="javascript:void(0)"  onclick="copyUrl();" class="user-fz">复制</a>
+				<if condition="$list.activates eq 1">
+				<span >已激活</span>
+				<else/>
+				<span onclick="zdqd()">激活</span>
+				</if>
+			</div>
+			<button type="button" class="jibie"><if condition="$list.use_grade eq 0">初级会员
+				<elseif condition="$list.use_grade eq 1"/>1级会员
+				<elseif condition="$list.use_grade eq 2"/>2级会员
+				<elseif condition="$list.use_grade eq 3"/>3级会员
+				<elseif condition="$list.use_grade eq 4"/>4级会员
+				<elseif condition="$list.use_grade eq 5"/>5级会员
+				<elseif condition="$list.use_grade eq 6"/>6级会员
+				<elseif condition="$list.use_grade eq 7"/>7级会员
+				<elseif condition="$list.use_grade eq 8"/>8级会员
+				<elseif condition="$list.use_grade eq 9"/>9级会员
+				<else/>10级会员
+			</if>
+			</button>
+		</div>
+		
+		
+		
+		
+	<div style="margin: 5px 5px;">  
+		<a href="/user/Sharecode.html"><img src="/Public/home/wap/images/hdt.png" width="100%" height="70px"></a>
+		</div>
+		<ul class="mui-table-view ullist">	
+		
+		
+		
+		
+		
+		<ul class="mui-table-view ullist">
+			<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/zichan.png" class="imglist">
+				<a href="{:U('User/zichan')}" class="mui-navigate-right" style=" margin-left: 10%;font-size: 0.9em;">
+					我的资产
+				</a>
+			</li>
+			
+				<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/ziliao.png" class="imglist">
+				<a href="{:U('User/ziliaos')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					财务明细
+				</a>
+			</li>
+			
+			
+	
+
+				<!--<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/chongzhi.png" class="imglist">
+				<a href="{:U('Recharge/chongzhijilu')}" class="mui-navigate-right" style=" margin-left: 10%;font-size: 0.9em;">
+					充值管理
+				</a>
+			</li>-->
+
+				<!--<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/chongzhi.png" class="imglist">
+				<a href="{:U('Withdraw/transfer')}" class="mui-navigate-right" style=" margin-left: 10%;font-size: 0.9em;">
+					转账对方
+				</a>
+			</li>-->
+
+				<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/tixian.png" class="imglist">
+				<a href="{:U('Withdraw/index')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					提现记录
+				</a>
+			</li>
+			
+				<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/tixian.png" class="imglist">
+				<a href="{:U('User/tgzx')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					推广中心
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+				<!--<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/tixian.png" class="imglist">
+				<a href="{:U('User/bill')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					资金日志
+				</a>
+			</li>-->
+				<!--<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/tixian.png" class="imglist">
+				<a href="{:U('User/yjbill')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					支出明细
+				</a>
+			</li>-->
+			
+			<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/fenxiang.png" class="imglist">
+				<a href="{:U('User/Sharecode')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					邀请好友
+				</a>
+			</li>
+			
+			
+			<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/erweima.png" class="imglist">
+				<a href="{:U('User/erweima')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					收款管理
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/fenxiang.png" class="imglist">
+				<a href="{:U('User/Teamdets')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					我的团队
+				</a>
+			</li>
+
+			<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/kefu.png" class="imglist">
+				<a href="{:U('User/kefu')}" class="mui-navigate-right" style=" margin-left: 10%; font-size: 0.9em;">
+					<!--联系客服-->
+					反馈留言
+				</a>
+			</li>
+			
+				<li class="mui-table-view-cell mui-collapse-content">
+				<img src="../Public/home/wap/images/ziliao.png" class="imglist">
+				<a href="{:U('User/ziliao')}" class="mui-navigate-right" style=" margin-left: 10%;font-size: 0.9em;">
+					安全设置
+				</a>
+			</li>
+			
+			
+			<li class="mui-table-view-cell mui-collapse-content" style="margin-bottom: 1rem;">
+				<img src="../Public/home/wap/images/shezhi.png" class="imglist">
+				<a href="javascript:;" class="mui-navigate-right" onclick="loginout()" style=" margin-left: 10%;font-size: 0.9em;">
+				<!--<a href="{:U('User/shezhi')}" class="mui-navigate-right" style=" margin-left: 10%;font-size: 0.9em;">-->
+					安全退出
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+		
+		
+		
+		
+		
+		
+		
+	
+<nav class="mui-bar mui-bar-tab">
+	<a class="mui-tab-item" href="{:U('Index/qdgame')}">
+		<span class="mui-icon mui-icon-paperplane"></span>
+		<span class="mui-tab-label">承兑接单</span>
+	</a>
+	
+	<a class="mui-tab-item" href="{:U('Index/shoudan')}">
+		<span class="mui-icon mui-icon-bars"></span>
+		<span class="mui-tab-label">工作记录</span>
+	</a>
+	<a class="mui-tab-item mui-active" href="{:U('User/index')}">
+		<span class="mui-icon mui-icon-contact"></span>
+		<span class="mui-tab-label">个人中心</span>
+	</a>
+</nav>
+</body>
+ <script type="text/javascript" src="__COM__/js/jquery-1.9.1.min.js" ></script>
+ <script type="text/javascript" src="__COM__/layer/layer.js" ></script>
+<script type="text/html" id="detailsForm">
+	<div>
+		<p class="ullei">提示:激活需要扣除{$qd_minmoney}余额</p>
+	</div>
+</script>
+ <script type="text/javascript">
+	function loginout(){
+		window.location.href="{:U('User/Loginout')}";
+	}
+    function zdqd(){
+
+        layer.open({
+            type:1,
+            id: 'layerDemo1',
+            area:['300px','200px'],
+            btn: ['激活', '取 消'],
+            yes: function(){
+                $.post('/User/activation',{},function (data) {
+                    layer.msg(data.message);
+                    if(data.status == 1){
+                        layer.closeAll();
+                        layer.msg(data.message);
+                        window.location.reload();
+                    }
+                    console.log(data);return false;
+                })
+            },
+            btn2: function(){
+                layer.closeAll();
+            },
+            title:'激活信息',
+            content:$("#detailsForm").html()
+        });
+    }
+ </script>
+    <script type="text/javascript">
+        function copyUrl()
+        {
+            var txt=$("#txt").text();
+            copy(txt);
+        }
+
+        function copy(message) {
+            var input = document.createElement("input");
+            input.value = message;
+            document.body.appendChild(input);
+            input.select();
+            input.setSelectionRange(0, input.value.length), document.execCommand('Copy');
+            document.body.removeChild(input);
+            msg_alert("复制成功");
+        }
+    </script>
+ <style type="text/css">
+.mui-bar-tab {
+    -webkit-box-shadow: 0 0 1px rgba(210, 207, 207, 0.9);
+    box-shadow: 0 0 1px rgba(210, 207, 207, 0.9);
+}
+.mui-bar-nav {
+    -webkit-box-shadow: 0 0 1px rgba(142, 142, 142, 0.9);
+    box-shadow: 0 0 1px rgba(142, 142, 142, 0.9);
+}
+
+</style>
+</html>

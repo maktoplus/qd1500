@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="__WCSS__/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@1.6/lib/index.css">
+
+	<style>
+		.body{
+			line-height: px;
+		}
+		.mui-table-view-cell:after{
+			left: 0px;
+			/*background-color:#292828;*/
+		}
+		.mui-table-view:before{
+			/*background-color:#292828;*/
+		}
+		.mui-table-view:after{
+			/*background-color:#292828;*/
+		}
+			/*跨webview需要手动指定位置*/
+			
+			.mui-plus header.mui-bar {
+				display: none!important;
+			}
+			.mui-plus .mui-bar-nav~.mui-content {
+				padding:0!important;
+			}
+			
+			.mui-plus .plus{
+				display: inline;
+			}
+			
+			.plus{
+				display: none;
+			}
+			
+			#topPopover {
+				position:fixed;
+				top:16px;
+				right:6px;
+			}
+			#topPopover .mui-popover-arrow {
+				left:auto;
+				right:6px;
+			}
+
+			span.mui-icon {
+				font-size:14px;
+				color:#007aff;
+				margin-left:-15px;
+				padding-right:10px;
+			}
+			.mui-popover {
+				height:300px;
+			}
+			.mui-content {
+				padding:10px;
+			}
+			.header{
+				background:#447df5;
+				top:0;
+				box-shadow:0 0px 0px #ccc;
+				-webkit-box-shadow:0 0px 0px #ccc;
+			}
+			.h1{
+				font-family:'微软雅黑';
+				color: #fff;
+			}
+			.ul{
+				/*margin-top:20px;*/
+				background:#FFF;
+				line-height:2em;
+				    overflow: hidden;
+			}
+			.p{
+				margin-left:10%;
+				font-family:'微软雅黑';
+				/*color:aquamarine;*/
+			}
+			.p2{
+				position:absolute;
+				left:35%;
+				bottom:12px;
+				font-family:'微软雅黑';
+				font-size:1em;
+				color: #fff;
+			}
+			
+			.zj-ewm div{
+				font-size: .9em;
+				color: #333;
+				text-align: center;
+				line-height: 30px;
+			}
+			.zj-ewm img{
+				width: 120px;
+				display: block;
+				margin: 0 auto;
+			}
+			.button{
+				display:block;
+				margin: 20px auto;
+				/*position:absolute;*/
+				background:#f9323b;
+				color:#fff;
+				/*top:12px;*/
+				font-size:0.7em;
+				/*right:20px;*/
+				line-height:2.3em;
+				width:80px;
+				/*border-radius:8px;*/
+				border:0px solid
+				width: 20%;
+				/*height: 25%;*/
+				text-align: center;
+				/*line-height: 230%;*/
+			}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" href="javascript:history.go(-1)"></a>
+			<h1 class="mui-title h1">支付宝二维码</h1>
+		</header>
+		<br><br>
+		<empty name="wxlist">
+		<else />
+		<foreach name="wxlist" item="info">
+		<ul class="mui-table-view ul">
+			<li class="mui-collapse-content zj-ewm">
+
+							<div>收款账号</div>
+				<div><?php echo $info['ewm_acc'];?></div>
+				<div>收款账号</div>
+				<div><?php echo $info['ewm_price'];?></div>
+				<a type="button" class="button" href="javascript:void(0);" onclick="delewm(<?php echo $info['id'];?>)">删除</a>
+			</li>
+		</li>
+		</ul>
+		</foreach>
+		</empty>
+		
+	<script type="text/javascript" src="__COM__/js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="__COM__/layer/layer.js"></script>
+<script type="text/javascript">
+	function delewm(id){
+		var id = id;
+		// $("#delid").attr('disabled',true)
+		$.post("{:U('User/delewmup')}",
+		{'id':id},
+		function(data){
+			if(data.code==1){
+				layer.msg(data.msg);  //,data.url);
+				setTimeout(function (args) {
+					window.location.href = "{:U('User/zfberweima')}";
+				}, 3000); 
+			}else{
+				layer.msg(data.msg);  //,data.url);
+			}
+		});
+	}
+
+</script>
+</body>
+</html>

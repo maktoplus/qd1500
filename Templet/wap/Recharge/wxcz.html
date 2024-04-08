@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="__WJS__/mui.min.js"></script>
+    <link href="__WCSS__/mui.min.css" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+
+     	<script type="text/javascript" src="__COM__/js/jquery-1.9.1.min.js" ></script>
+ 	<script type="text/javascript" src="__COM__/layer/layer.js" ></script>
+		<script type="text/javascript" src="__COM__/js/index.js" ></script>
+	<script type="text/javascript" src="__COM__/js/public.js" ></script>
+	<script type="text/javascript" src="__COM__/js/common.js" ></script>
+		<script type="text/javascript" src="__COM__/js/Uploader.swf" ></script>
+	<script type="text/javascript" src="__COM__/js/webuploader.js" ></script>
+
+	<style>
+		.body{
+			line-height: px;
+		}
+		.mui-table-view-cell:after{
+			left: 0px;
+			background-color:#292828;
+		}
+		.mui-table-view:before{
+			background-color:#292828;
+		}
+		.mui-table-view:after{
+			background-color:#292828;
+		}
+		.mui-input-group:before{
+			height:0px
+		}
+		.mui-input-group:after{
+			height:0px;
+		}
+		.header{
+			background:#447df5;
+			top:0;
+			box-shadow:0 0px 0px #ccc;
+			-webkit-box-shadow:0 0px 0px #ccc;
+		}
+		.h1{
+			font-family:'微软雅黑';
+			color:#fff;
+		}
+		.divc{
+    background: #FFF;
+    height: 180px;
+    width: 100%;
+    /* top: 45px; */
+    margin: 45px auto 0 auto;
+    padding: 10px 0;
+    /* left: 0px; */
+    /* right: 0px; */
+    /* border-radius: 10px; */
+    /* box-shadow: 2px 0px 20px 0px #007AFF; */
+		}
+		.img{
+    width: 120px;
+    display: block;
+    margin: 0 auto;
+    /* margin-left: 26px; */
+    /* margin-top: 20px; */
+    margin-bottom: 10px;
+		}
+.span {
+    /* color: #fff; */
+    /* font-family: '微软雅黑'; */
+    font-size: 0.9em;
+    /* margin-left: 16px; */
+    display: block;
+    text-align: center;
+}
+.form {
+    /* top: 120px; */
+    /* height: 0px; */
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+		.divc1{
+			/*border-radius:30px;*/
+			background-color:#fff;
+			/*margin-bottom:30px;*/
+		}
+		.img1{
+			position:absolute;
+			width:35px;
+			margin-left:15px;
+			margin-top:4px;
+		}
+.int {
+    color: #0062CC;
+    height: 40px;
+    /* margin-left: 22%; */
+    font-size: 0.9em;
+    font-family: '微软雅黑';
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+}
+.button {
+    /* line-height: 2em; */
+    font-size: 0.9em;
+    width: 90%;
+    font-family: '微软雅黑';
+    /* border-radius: 30px; */
+    border: 0px solid;
+        margin: 20px auto;
+     background: #2876e4;
+}
+		.mui-input-group .mui-input-row:after{
+			left: 0;
+		}
+		.mui-button-row {
+    position: relative;
+     padding-top: 0px; 
+    text-align: center;
+}
+.mui-input-group .mui-button-row {
+    height: auto;
+}
+	.file-btn3 input, .file-btn input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+	</style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title h1">微信充值</h1>
+			
+	</header>	
+		<div class="mui-card-content divc">
+			<img src="{$conf.wechat_qr}" class="img" />
+			<span class="span">打开微信，扫描二维码</span>
+		</div>
+			<form class="mui-input-group form"  name="AddUser" action="{:U('Recharge/wx_rc')}" id="registerForm"  >
+<!-- 				<div class="mui-input-row divc1">
+					<img src="../Public/home/wap/images/nubmer.png"  class="img1" />
+					<input type="number" class="int1"  name="uname" value=""  placeholder="充值姓名">
+				</div>
+				<div class="mui-input-row divc1">
+					<img src="../Public/home/wap/images/mima.png" class="img1" />
+					<input type="text"  name="account" value="" class="int1" placeholder="充值账号">
+				</div> -->
+				<div class="mui-input-row divc1">
+					<input type="number" class="int"  name="price" placeholder="请输入充值金额(元)">
+				</div>
+				<div class="mui-input-row divc1">
+					<input type="text" class="int"  name="marker" placeholder="请输入备注(选填)">
+				</div>
+
+							<div class="zj-ewm">
+
+				<div class="spanleixing" style="margin: 10px auto 0;text-align: center;">请上传充值凭证</div>
+
+				<div class="mui-card-content erweima">		
+					<div class="opiniontop_d">
+			         <div class="clear oneimg" style="width:100%;padding:10px 5px;">
+		                 <div id="filelist1" class="files fl" style="margin: 0 auto;">
+		                     <span id="filePicker1" class="file-btn webuploader-container">
+								<div class="webuploader-pick" style="width: 120px;height:120px;margin: 0 auto;display: block;">
+									<img src="/Public/home/wap/images/tianjia.png"  id="img1" onload="setImgWH(this)"/>
+								</div>
+								<div id="rt_rt_1cvagj2mr16sv1dg91skisdj1qfr1" style="position: absolute; top: 0px; left: 0px; width: 120px; height: 100%; overflow: hidden; bottom: auto; right: auto;display:none;">
+									<input type="file" name="file" class="webuploader-element-invisible" accept="image/jpg,image/gif,image/png,image/jpeg">
+									<label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+								</div>
+							</span>
+							 <input type="hidden" name="icon" id="icon" value="">
+							 <input type="hidden" name="ewmclass" id="ewmclass" value="1">
+		                 </div>
+		                
+		             </div>
+					</div>
+					
+				</div>
+			</div>
+
+
+				<div class="mui-button-row">
+					<button type="button" class="mui-btn mui-btn-danger button"  id="submit"  onclick="alipaynow()"  >提交</button>
+				</div>
+			</form>
+			<!--<div class="mui-card-content" style="width: 90%;margin: 20px auto;">-->
+				<!--<span style="font-size: 0.8em;color: #8f8f94;">-->
+				<!--充值注意事项<br>-->
+	<!---->
+				<!--1.全天24小时可以转账充值；<br>-->
+	<!---->
+				<!--2.禁止向上级递交信用积分，否则出现资金问题，平台概不负责；<br>-->
+	<!---->
+				<!--3.平台禁止代充，充值失败可以选择其他通道；<br>-->
+	<!---->
+				<!--4.转账成功后，1-10分钟内可以到账，如遇充值高峰期，10-30分钟才能到账，可以联系导师处理。	-->
+				<!--</span>-->
+			<!--</div>-->
+	
+</body>
+    <script type="text/javascript">
+		var UPLOAD_URL = "/Home/User/uploadfile.html";
+		var SWF_URL = '/Public/js/Uploader.swf';
+
+	
+	 $(function () {
+		 upload1();
+	 });
+    </script>
+ <script type="text/javascript">
+
+    function alipaynow(){
+        var thisform=document.forms['AddUser'];
+		// var   uname=thisform.uname.value;
+        // var   account=thisform.account.value;       
+        var   price=thisform.price.value;
+        var   marker=thisform.marker.value;
+        var icon = $('#icon').val();
+
+  //       if(uname=='' || uname==null){
+  //           layer.msg('充值人姓名');
+  //           return false;
+  //       }
+		// if(account=='' || account==null){
+  //           layer.msg('充值账号');
+  //           return false;
+  //       }
+		if(price=='' || price==null){
+            layer.msg('充值金额');
+            return false;
+        }
+
+                if(icon == ''){
+	        layer.msg('没有上传充值凭证');
+			return false;
+	    }
+		
+        var post_url = $("form[name='AddUser']").attr('action');
+        var post_data= $("form[name='AddUser']").serialize();
+		$("#submit").attr('disabled',true)
+        $.ajax({
+            type: "POST",
+            url: post_url,
+            data:post_data,
+            dataType: "json",
+            success: function(data){
+                if(data.status==1){
+                    layer.msg(data.msg);  //,data.url);
+					setTimeout(function (args) {
+						window.location.href = "{:U('Recharge/chongzhijilu')}";
+					}, 3000); 
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        });
+    }
+
+</script>	
+</html>

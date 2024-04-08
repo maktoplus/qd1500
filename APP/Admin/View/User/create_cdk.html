@@ -1,0 +1,147 @@
+<extend name="Public/layout"/>
+<block name="style" >
+    <link rel="stylesheet" type="text/css" href="__LYUI__/css/lyui.extend.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/style.css">
+
+
+</block>
+
+<block name="main">
+   <div id="main" class="col-xs-12 col-sm-9 main" style="overflow-y: scroll;">
+        <!-- 面包屑导航 -->
+        <ul class="breadcrumb">
+            <li><i class="fa fa-map-marker"></i></li>
+
+            <li class="text-muted"><?php echo $_menu_tab['name']['0'] .'/'.'生成注册码';?></li>
+
+        </ul>
+
+        <!-- 主体内容区域 -->
+        <div class="tab-content ct-tab-content">
+            <div class="panel-body">
+                <div class="builder formbuilder-box">
+                        
+                        <div class="form-group"></div>
+
+                        <!-- 顶部工具栏按钮 -->
+                        <div class="builder-toolbar">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 clearfix" style="margin-bottom:20px;padding-top:0px;padding-bottom:10px;">
+                                        
+                                            <div class="form-group right">
+
+												<form class="form" method="post" action="">
+													<div style="float:left;" class="" >
+														<label class="left control-label" style="float:left;line-height: 29px;margin-bottom:0px">生成数量: </label>
+														<input  type="text" name="cdk_num" class="search-input form-control" value="" placeholder="1000" style="width: 90px;">
+													</div>
+													<div style="float:left;" class="input-group search-form">
+														<input type="hidden" value="1" name="save_czset" />
+														<input type="submit" value="生成注册码" style="border:none;height:33px;width:100px;background:#2699ed;color:#ffffff;cursor:pointer;"/></button>
+													</div>
+												 </form>
+
+												
+                                            </div>
+                                       
+                                 </div>
+                            </div>
+                        </div>
+                        <style type="text/css">tr,td{margin: 0 !important;padding: 5px 5px !important;}</style>
+
+                        <!-- 数据列表 -->
+                        <div class="builder-container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="builder-table">
+                                        <div class="panel panel-default table-responsive">
+                                            <table class="table table-bordered table-striped table-hover">
+                                              <thead>
+                                                <tr>
+                                                    <th style="font-size:12px;">ID</th>
+                                                    <th style="font-size:12px;">注册码</th>
+                                                    <th style="font-size:12px;">使用者</th>
+                                                    <th style="font-size:12px;">生成日期</th>
+                                                    <th style="font-size:12px;">状态</th>
+                                                    <!-- <th style="max-width:20%;font-size:12px;" >操作</th> -->
+                                                </tr>
+                                            </thead>
+												<tbody>
+													<empty name = 'list'>
+														<tr class="builder-data-empty">
+                                                            <td class="text-center empty-info" colspan="20"  style="font-size:12px;">
+                                                                <i class="fa fa-database"></i> 暂时没有数据<br>
+                                                            </td>
+                                                        </tr> 
+													<else/>
+													<foreach name = 'list' item='v'>
+														<tr>
+															<td style="font-size:12px;"><?php echo $v['id'];?></td>
+															
+															<td style="font-size:12px;"><?php echo $v['cdkey'];?></td>
+                                                            <td style="font-size:12px;"><?php if($v['uid']){ echo getuserinfo($v['uid'],2); }else{ echo "未使用"; } ?></td>
+
+															<td style="font-size:12px;"><?php echo date("Y-m-d H:i",$v['addtime']);?></td>
+
+															<td style="font-size:12px;"><?php if($v['status'] == 1){ echo "<font style='color: red;'>已使用</font>"; }else{ echo "<font style='color: green;'>未使用</font>"; } ?></td>
+															
+															<!-- <td style="font-size:12px;">
+																<a href="<?php echo U('User/reedit',array('id'=>$v['id'],'st'=>3));?>" style="font-size:12px;cursor:pointer;">删除</a>
+															</td> -->
+	
+														</tr>
+													</foreach>
+													</empty>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        
+                                           <style>
+												.pages a,.pages span {display:inline-block;padding:2px 5px;margin:0 1px;border:1px solid #f0f0f0;-webkit-border-radius:3px; -moz-border-radius:3px;border-radius:3px;}
+												.pages a,.pages li {display:inline-block;list-style: none;text-decoration:none; color:#58A0D3;}
+												.pages a.first,.pages a.prev,.pages a.next,.pages a.end{ margin:0;}
+												.pages a:hover{ border-color:#50A8E6;}
+												.pages span.current{ background:#50A8E6;color:#FFF; font-weight:700;border-color:#50A8E6;}
+											</style>
+											<div class="pages"><br /> <div align="right">{$page}</div></div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+    </div>                   
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript">
+    $('.date').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true,
+        todayBtn:1, //是否显示今日按钮
+    });
+ 
+    $(document).ready(function(){
+  
+    $(".bky").click(function(){
+      
+        this.href="###";
+        alert("您无权限访问");  
+        return false;     
+
+        });
+
+    });
+	
+	
+	
+	
+</script>
+  <!--   <script type="text/javascript" src="__LYUI__/js/lyui.extend.min.js"></script> -->
+</block>

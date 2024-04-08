@@ -1,0 +1,9 @@
+测试环境：php7.1+mysql5.6
+
+数据库配置文件 \APP\Common\Conf\config.php
+
+前端  用户名  18888888888     密码  123456
+
+后台/Admin/Pubss/login.html    用户：admin   密码：123456
+
+

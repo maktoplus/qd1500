@@ -1,0 +1,246 @@
+
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>后台管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="generator" content="CoreThink">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="{:C('WEB_SITE_TITLE')}">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="apple-touch-icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/logo.png">
+    <link rel="stylesheet" type="text/css" href="__LYUI__/css/lyui.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/admin.css">
+    <block name="style"></block>
+    <!--[if lt IE 9]>
+        
+        
+    <![endif]-->
+    <script type="text/javascript" src="__PUBLIC__/libs/jquery/1.x/jquery.min.js"></script>
+     <link rel="stylesheet" href="__PUBLIC__/plugin/themes/default/default.css" />
+    <script charset="utf-8" src="__PUBLIC__/plugin/kindeditor-min.js"></script>
+    <script charset="utf-8" src="__PUBLIC__/plugin/lang/zh_CN.js"></script>
+
+    <!-- 日期 -->
+    <script type="text/javascript" src="__PUBLIC__/libs/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/libs/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <!-- 日期js cs -->
+    <link href="__PUBLIC__/libs/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/libs/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+
+</head>
+<!-- <body class="admin_index_index"> -->
+<body class="admin_config_group" >
+
+
+<block name="style" >
+    <link rel="stylesheet" type="text/css" href="__LYUI__/css/lyui.extend.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/style.css">
+</block>
+
+<block name="main">
+   <div class="main">
+
+        <!-- 主体内容区域 -->
+        <div class="tab-content ct-tab-content">
+            <div class="panel-body">
+                <div class="builder formbuilder-box">
+
+                    <div class="form-group"></div>
+                    <div class="builder-container" >
+                        <div class="row" >
+                            <div class="col-xs-12" >
+                                <form action="{:U('Roborder/pipei')}" method="post" class="form-horizontal form form-builder">
+                                <div class="form-type-list">
+
+                                    <div class="form-group">
+                                        <label class="left control-label">会员账号：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="<?php echo $v['uaccount'];?>" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                   <div class="form-group">
+                                        <label class="left control-label">会员昵称：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="<?php echo $v['uname'];?>" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">真实姓名：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$userres.truename}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">身份证：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$userres.usercard}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">微信收款账号：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$wx.ewm_acc}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="left control-label">微信收款二维码：</label>
+                                        <div style="width:50%" class="input-group">
+
+                                        <?php if(!$wx["ewm_url"]){ ?>
+
+                                                <input type="text" class="form-control" value="用户未添加" readonly/>
+                                            <?php }else{ ?>
+
+                                                <img src="{$wx.ewm_url}" style="    width: 100px;">
+                                            <?php } ?>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">支付宝收款账号：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$al.ewm_acc}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">支付宝收款二维码：</label>
+                                        <div style="width:50%" class="input-group">
+
+                                            <?php if(!$al["ewm_url"]){ ?>
+
+                                                <input type="text" class="form-control" value="用户未添加" readonly/>
+                                            <?php }else{ ?>
+
+                                                <img src="{$al.ewm_url}" style="    width: 100px;">
+                                            <?php } ?>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">所属银行：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$bank.bankname}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">持卡人：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$bank.name}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">银行卡号：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$bank.banknum}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">总抢单金额：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="<?php echo $v['umoney'];?>" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">剩余抢单金额：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="{$v.price}" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="left control-label">剩余可得佣金：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="<?php echo commission($v['price'],$v['class']); ?>" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label class="left control-label">抢单类型：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="<?php echo getclass($v['class']);?>" readonly/>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <?php if($v["status"] == 1){ ?>
+                                    <div class="form-group">
+                                        <label class="left control-label">本次匹配金额：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" class="form-control" value="" name="price"/>
+                                            
+                                        </div>
+                                    </div>
+                                    <?php }else{ ?>
+
+                                    <div class="form-group">当前订单金额已全部使用完毕无法继续匹配</div>
+
+                                    <?php } ?>
+
+                                 
+                                <div class="form-group"></div>
+                                <?php if($v["status"] == 1){ ?>
+                                <div class="form-group bottom_button_list">
+                                    <input type="hidden" class="form-control" value="{$v.id}" name="id"/>
+                                    <a class="btn btn-primary submit ajax-post" type="submit" target-form="form-builder">确定</a>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>                   
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript" src="__LYUI__/js/lyui.extend.min.js"></script>
+</block>
+
+
+    <div class="clearfix full-footer">
+        <block name="full-footer"></block>
+    </div>
+
+    <div class="clearfix full-script">
+        <div class="container-fluid">
+            <input type="hidden" id="corethink_home_img" value="__HOME_IMG__">
+            <script type="text/javascript" src="__LYUI__/js/lyui.min.js"></script>
+            <script type="text/javascript" src="__ADMIN_JS__/admin.js"></script>
+            <block name="script"></block>
+        </div>
+    </div>
+</body>
+</html>

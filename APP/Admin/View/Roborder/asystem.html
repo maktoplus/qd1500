@@ -1,0 +1,826 @@
+<extend name="Public/layout"/>
+<block name="style" >
+    <link rel="stylesheet" type="text/css" href="__LYUI__/css/lyui.extend.min.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN_CSS__/style.css">
+        <script type="text/javascript" src="/Public/home/common/js/jquery-1.9.1.min.js" ></script>
+    <script type="text/javascript" src="/Public/home/common/layer/layer.js" ></script>
+        <script type="text/javascript" src="/Public/home/common/js/Uploader.swf" ></script>
+    <script type="text/javascript" src="/Public/home/common/js/webuploader.js" ></script>
+
+    <script type="text/javascript">
+
+
+        //处理图片的宽高
+        function setImgWH(obj) {
+            if (obj.width > obj.height) {
+                $(obj).css('height', '100%');
+            } else {
+                $(obj).css('width', '100%');
+            }
+        }
+        //处理图片的宽高
+        function setImgHW(obj) {
+            if (obj.width > obj.height) {
+                $(obj).css('height', '80%');
+            } else {
+                $(obj).css('width', '80%');
+            }
+        }
+    </script>
+
+    <style type="text/css">
+    .file-btn {
+    display: block;
+    position: relative;
+    margin-right: 120px;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
+    .file-btn3 input, .file-btn input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+    </style>
+</block>
+
+<block name="main">
+   <div id="main" class="col-xs-12 col-sm-9 main" style="overflow-y: scroll;">
+        <!-- 面包屑导航 -->
+        <ul class="breadcrumb">
+            <li><i class="fa fa-map-marker"></i></li>
+
+             <li class="text-muted">游戏参数设置</li>
+        </ul>
+
+        <!-- 主体内容区域 -->
+        <div class="tab-content ct-tab-content">
+            <div class="panel-body">
+                <div class="builder formbuilder-box">
+
+                    <div class="form-group"></div>
+                    <div class="builder-container" >
+                        <div class="row" >
+                            <div class="col-xs-12" >
+                                <form action="{:U('Roborder/asystem')}" method="post" class="form-horizontal form form-builder">
+                                <div class="form-type-list">
+                                    公告设置<hr style="margin-top: 0px;width: 100%">
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">公告</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="notice" class="form-control" value="{$info.notice}" placeholder="首页提示用户的公告"/>
+                                        </div>
+                                    </div>
+                                    会员限制设置<hr style="margin-top: 0px;width: 100%">
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">激活扣除余额</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="activation" class="form-control" value="{$info.activation}" placeholder="激活扣除余额数量"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">未跑分时长设置</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="time" class="form-control" value="{$info.time}" placeholder="未跑分则冻结"/>
+                                        </div>
+                                    </div>
+                                    升级设置<hr style="margin-top: 0px;width: 100%">
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">1级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][0]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                        <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][0]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                        <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][0]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">2级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][1]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][1]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][1]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">3级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][2]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][2]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][2]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">4级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][3]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][3]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][3]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">5级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][4]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][4]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][4]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">6级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][5]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][5]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][5]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">7级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][6]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][6]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][6]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">8级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][7]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][7]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][7]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">9级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][8]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][8]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][8]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">10级直推人数设置(整数)</label>
+                                        <div style="width:50%" class="input-group" >
+                                            <input type="text" name="user_first_num[]" class="form-control" value="{$info['user_first_num'][9]}" style="width:100px;" placeholder="设置会员直推人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">伞下人数设置(整数)</label>
+                                            <input type="text" name="user_num[]" class="form-control" value="{$info['user_num'][9]}" style="width:100px;" placeholder="设置会员伞下人数达到指定值才有资格升级"/>
+                                            <label class="left control-label">佣金加成设置</label>
+                                            <input type="text" name="user_money[]" class="form-control" value="{$info['user_money'][9]}"  style="width:100px;" placeholder="可获得佣金加成"/>
+                                        </div>
+                                    </div>
+
+
+                                    抢单参数设置<hr style="margin-top: 0px;width: 100%">
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">跑分设置(0：关闭 1：开启)：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="switch" class="form-control" value="{$info.switch|default = 1}" placeholder=""/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                    <label class="left control-label">抢单时间设置：(6小时)</label>
+                                    <div style="width:50%" class="input-group">
+                                    <input type="text" name="qd_time" class="form-control" value="{$info.qd_time}" placeholder="设置抢单的时长，达到后获取利息并结束抢单"/>
+                                    </div>
+                                    </div>
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">抢单拆分设置：(整数)</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="qd_num" class="form-control" value="{$info.qd_num}" placeholder="设置抢单的拆分数量,开始抢单立即拆分"/>
+                                        </div>
+                                    </div>
+
+                                   <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">抢单额度比例：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_cf" class="form-control" value="{$info.qd_cf}" placeholder="抢单金额和用户余额比例，如余额1000，最大抢单为700，就填70，表示70%"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                     <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">抢单难度:</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_nd" class="form-control" value="{$info.qd_nd}" placeholder="0.1,0.2,0.3,0.4 注意输入时难度系数单以英文逗号隔开，否则会出错"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">微信抢单佣金比例：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_wxyj" class="form-control" value="{$info.qd_wxyj}" placeholder="微信抢单佣金比例：如30%要写成0.3"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+									<!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">支付宝抢单佣金比：</label>-->
+                                         <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_zfbyj" class="form-control" value="{$info.qd_zfbyj}" placeholder="支付宝抢单佣金比例：如30%要写成0.3"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+									<!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">银行抢单佣金比例：</label>-->
+                                         <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_bkyj" class="form-control" value="{$info.qd_bkyj}" placeholder="银行抢单佣金比例：如30%要写成0.3"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+									<!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">增加难度时间点：</label>-->
+                                         <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="qd_ndtime" class="form-control" value="{$info.qd_ndtime}" placeholder="如11点写成11,表示11点至12点，多个点写成9,11,13,15以英文逗号隔开"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+									<div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">注册会员加成：(如0.1%，写成0.01)</label>
+                                         <div style="width:50%" class="input-group">
+                                            <input type="text" name="qd_yjjc" class="form-control" value="{$info.qd_yjjc}" placeholder="如加成0.1%，写成0.01"/>
+                                        </div>
+                                    </div>
+									<div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">最低抢单额度：(整数)</label>
+                                         <div style="width:50%" class="input-group">
+                                            <input type="text" name="qd_minmoney" class="form-control" value="{$info.qd_minmoney}" placeholder="如：100"/>
+                                        </div>
+                                    </div>
+                                    
+                                     充值提现参数设置<hr style="margin-top: 0px;width: 100%">
+                                   <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">最小充值额度：(整数)</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="min_recharge" class="form-control" value="{$info.min_recharge}" placeholder="直接填写最小充值金额如：1000"/>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">最小提现额度：（整数）</label>
+                                       <div style="width:50%" class="input-group">
+                                            <input type="text" name="mix_withdraw" class="form-control" value="{$info.mix_withdraw}" placeholder="直接填写最小提现金额如：1000"/>
+                                            
+                                        </div>
+                                    </div>
+									 <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">最大提现额度：（整数）</label>
+                                       <div style="width:50%" class="input-group">
+                                            <input type="text" name="max_withdraw" class="form-control" value="{$info.max_withdraw}" placeholder="直接填写最大提现额度如：10000"/>
+                                            
+                                        </div>
+                                    </div>
+									<div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">提现手续费：</label>
+                                       <div style="width:50%" class="input-group">
+                                            <input type="text" name="tx_yeb" class="form-control" value="{$info.tx_yeb}" placeholder="提现时需要扣除的手续费，70% 写70"/>
+                                            
+                                        </div>
+                                    </div>
+
+
+                                      充值设置<hr style="margin-top: 0px;width: 100%">
+                                   <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">微信充值二维码：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!---->
+                                            <!--<div class="mui-card-content erweima">      -->
+                                                <!--<div class="opiniontop_d">-->
+                                                 <!--<div class="clear oneimg" style="width:100%;padding:10px 5px;">-->
+                                                     <!--<div id="filelist1" class="files fl" style="position: relative;width: 120px;">-->
+                                                         <!--<span id="filePicker1" class="file-btn webuploader-container">-->
+                                                            <!--<div class="webuploader-pick" style="width: 120px;height:120px;display: block;">-->
+                                                                <!--<?php if($info["wechat_qr"]){ ?>-->
+                                                            <!---->
+                                                                <!--<img src="{$info.wechat_qr}"  id="img1" onload="setImgWH(this)"/>-->
+                                                                <!--<?php }else{ ?>-->
+
+                                                                <!--<img src="/Public/home/wap/images/tianjia.png"  id="img1" onload="setImgWH(this)"/>-->
+                                                                <!--<?php } ?>-->
+                                                            <!--</div>-->
+                                                        <!--</span>-->
+                                                         <!--<input type="hidden" name="icon" id="icon" value="{$info.wechat_qr}">-->
+                                                         <!--<input type="hidden" name="ewmclass" id="ewmclass" value="1">-->
+                                                     <!--</div>-->
+                                                    <!---->
+                                                 <!--</div>-->
+                                                <!--</div>-->
+                                                <!---->
+                                            <!--</div>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">余额充值二维码：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!---->
+                                            <!--<div class="mui-card-content erweima">      -->
+                                                <!--<div class="opiniontop_d">-->
+                                                 <!--<div class="clear oneimg" style="width:100%;padding:10px 5px;">-->
+                                                     <!--<div id="filelist1" class="files fl" style="position: relative;width: 120px;">-->
+                                                         <!--<span id="filePicker2" class="file-btn webuploader-container">-->
+                                                            <!--<div class="webuploader-pick" style="width: 120px;height:120px;display: block;">-->
+                                                                <!--<?php if($info["ali_qr"]){ ?>-->
+                                                                <!--<img src="{$info.ali_qr}"  id="img2" onload="setImgWH(this)"/>-->
+                                                                <!--<?php }else{ ?>-->
+                                                                <!--<img src="/Public/home/wap/images/tianjia.png"  id="img2" onload="setImgWH(this)"/>-->
+                                                                <!--<?php } ?>-->
+                                                            <!--</div>-->
+                                                        <!--</span>-->
+                                                         <!--<input type="hidden" name="icon1" id="icon1" value="{$info.ali_qr}">-->
+                                                         <!--<input type="hidden" name="ewmclass1" id="ewmclass1" value="1">-->
+                                                     <!--</div>-->
+                                                 <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">余额钱包地址</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="余额_money" class="form-control" value="{$info.余额_money}" placeholder="余额钱包地址"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">人民币转化余额比例  1：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="conversion" class="form-control" value="{$info.conversion|default=1}" placeholder="转化余额比例"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+
+                                      客服参数设置<hr style="margin-top: 0px;width: 100%">
+                                    <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">联系客服二维码：</label>
+                                        <div style="width:50%" class="input-group">
+
+                                            <div class="mui-card-content erweima">
+                                                <div class="opiniontop_d">
+                                                    <div class="clear oneimg" style="width:100%;padding:10px 5px;">
+                                                        <div id="filelist1" class="files fl" style="position: relative;width: 120px;">
+                                                         <span id="filePicker3" class="file-btn webuploader-container">
+                                                            <div class="webuploader-pick" style="width: 120px;height:120px;display: block;">
+                                                                <?php if($info["kf_qr"]){ ?>
+
+                                                                <img src="{$info.kf_qr}"  id="img3" onload="setImgWH(this)"/>
+
+                                                                <?php }else{ ?>
+
+                                                                <img src="/Public/home/wap/images/tianjia.png"  id="img3" onload="setImgWH(this)"/>
+
+                                                                <?php } ?>
+                                                            </div>
+                                                        </span>
+                                                            <input type="hidden" name="icon2" id="icon2" value="{$info.kf_qr}">
+                                                            <input type="hidden" name="ewmclass2" id="ewmclass2" value="1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">在线客服URL：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="sjjz_kefu" class="form-control" value="{$info.sjjz_kefu}" placeholder=""/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+									
+									<!--团队奖励设置<hr style="margin-top: 0px;width: 100%">-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">会员直推跑分设置：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="user_profit[]" class="form-control" value="{$info['user_profit'][0]}" placeholder="拿被推荐人的开启跑分利息值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">组长直推跑分设置：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="user_profit[]" class="form-control" value="{$info['user_profit'][1]}" placeholder="拿被推荐人的开启跑分本金值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">团队层级跑分奖-第二代：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="total_profit[]" class="form-control" value="{$info['total_profit'][0]}" placeholder="拿被推荐人的开启跑分本金值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">团队层级跑分奖-第三代：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="total_profit[]" class="form-control" value="{$info['total_profit'][1]}" placeholder="拿被推荐人的开启跑分本金值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">团队层级跑分奖-第四代：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="total_profit[]" class="form-control" value="{$info['total_profit'][2]}" placeholder="拿被推荐人的开启跑分本金值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">团队层级跑分奖-第五代：(如0.1%，写成0.01)</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="total_profit[]" class="form-control" value="{$info['total_profit'][3]}" placeholder="拿被推荐人的开启跑分本金值（ ）%,以跑完才返"/>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!-- <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">直推团队有效人数：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="team_onecount" class="form-control" value="{$info.team_onecount}" placeholder="需为整数"/>
+                                            
+                                        </div>
+                                    </div> -->
+									
+                                     <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">直推佣金收益比例：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="team_oneyj" class="form-control" value="{$info.team_oneyj}" placeholder="直推佣金收益比例10%写成0.1"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">二代团队有效人数：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="team_twocount" class="form-control" value="{$info.team_twocount}" placeholder="需为整数"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">二代团队冻结金额：</label>-->
+                                        <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="team_twoprice" class="form-control" value="{$info.team_twoprice}" placeholder="元"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group item_config[WEB_SITE_TITLE] ">-->
+                                        <!--<label class="left control-label">二代佣金收益比例：</label>-->
+                                         <!--<div style="width:50%" class="input-group">-->
+                                            <!--<input type="text" name="team_twoyj" class="form-control" value="{$info.team_twoyj}" placeholder="二代佣金收益比例5%写成0.05"/>-->
+                                            <!---->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                   <!-- <div class="form-group item_config[WEB_SITE_TITLE] ">
+                                        <label class="left control-label">三代佣金收益比例：</label>
+                                        <div style="width:50%" class="input-group">
+                                            <input type="text" name="team_threeyj" class="form-control" value="{$info.team_threeyj}" placeholder="三代佣金收益比例3%写成0.03"/>
+                                            
+                                        </div>
+                                    </div> -->
+
+                                 
+                                <div class="form-group"></div>
+                                <div class="form-group bottom_button_list">
+                                    <a class="btn btn-primary submit ajax-post" type="submit" target-form="form-builder">确定</a>
+                                    <a class="btn btn-danger return" onclick="javascript:history.back(-1);return false;">取消</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>                   
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript" src="__LYUI__/js/lyui.extend.min.js"></script>
+
+    <script type="text/javascript">
+        var UPLOAD_URL = "/Home/User/uploadfile.html";
+        var SWF_URL = '/Public/js/Uploader.swf';
+        // 图片上传
+        function upload1() {
+            //调用上传图片
+            var uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: false,
+                // swf文件路径
+                swf: SWF_URL,
+                // 文件接收服务端。
+                server: UPLOAD_URL,
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: {
+                    id: '#filePicker1',
+                    multiple: false
+                },
+                //限制图片数量
+                fileSizeLimit: 40 * 1024 * 1024,
+                fileSingleSizeLimit: 8 * 1024 * 1024,
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'jpg,gif,png,jpeg',
+                    mimeTypes: 'image/jpg,image/gif,image/png,image/jpeg'
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('error', function (handler) {
+                if (handler == 'Q_EXCEED_SIZE_LIMIT' || handler == 'F_EXCEED_SIZE') {
+                    layer.msg('上传图片最大不超过8M');
+                    return;
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                $('#img1').hide();
+                uploader.upload();
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file) {
+                $('#img1').after('<label class="loading_icon"></label>');
+
+                /*
+                 var $li = $( '#'+file.id ),
+                 $percent = $li.find('.progress .progress-bar');
+                 
+                 // 避免重复创建
+                 if ( !$percent.length ) {
+                 $percent = $('<div class="progress progress-striped active">' +
+                 '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                 '</div>' +
+                 '</div>').appendTo( $li ).find('.progress-bar');
+                 }
+                 
+                 $li.find('p.state').text('上传中');
+                 
+                 $percent.css( 'width', percentage * 100 + '%' );
+                 */
+            });
+
+            // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+            uploader.on('uploadSuccess', function (file, ret) {
+                if (ret.status == 0) {
+                    $('#img1').siblings('.loading_icon').remove();
+                    $('#img1').show();
+                    layer.msg(ret.info);
+                } else {
+                    $('#icon').val(ret.data.url);
+                    $("#img1").attr('src', ret.data.thumb);
+                    setTimeout(function () {
+                        $("#img1").show();
+                        $('#img1').siblings('.loading_icon').remove();
+                    }, 100);
+                }
+
+                //$( '#'+file.id ).find('p.state').text('已上传');
+            });
+
+            // 文件上传失败，显示上传出错。
+            uploader.on('uploadError', function (file) {
+                $('#img1').siblings('.loading_icon').remove();
+                $("#img1").show();
+                layer.msg('上传出错');
+
+                //$( '#'+file.id ).find('p.state').text('上传出错');
+            });
+
+            // 完成上传完了，成功或者失败，先删除进度条。
+            uploader.on('uploadComplete', function (file) {
+                //$( '#'+file.id ).find('.progress').fadeOut();
+            });
+        }
+
+
+
+                // 图片上传
+        function upload3() {
+            //调用上传图片
+            var uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: false,
+                // swf文件路径
+                swf: SWF_URL,
+                // 文件接收服务端。
+                server: UPLOAD_URL,
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: {
+                    id: '#filePicker3',
+                    multiple: false
+                },
+                //限制图片数量
+                fileSizeLimit: 40 * 1024 * 1024,
+                fileSingleSizeLimit: 8 * 1024 * 1024,
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'jpg,gif,png,jpeg',
+                    mimeTypes: 'image/jpg,image/gif,image/png,image/jpeg'
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('error', function (handler) {
+                if (handler == 'Q_EXCEED_SIZE_LIMIT' || handler == 'F_EXCEED_SIZE') {
+                    layer.msg('上传图片最大不超过8M');
+                    return;
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                $('#img2').hide();
+                uploader.upload();
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file) {
+                $('#img2').after('<label class="loading_icon"></label>');
+
+                /*
+                 var $li = $( '#'+file.id ),
+                 $percent = $li.find('.progress .progress-bar');
+                 
+                 // 避免重复创建
+                 if ( !$percent.length ) {
+                 $percent = $('<div class="progress progress-striped active">' +
+                 '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                 '</div>' +
+                 '</div>').appendTo( $li ).find('.progress-bar');
+                 }
+                 
+                 $li.find('p.state').text('上传中');
+                 
+                 $percent.css( 'width', percentage * 100 + '%' );
+                 */
+            });
+
+            // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+            uploader.on('uploadSuccess', function (file, ret) {
+                if (ret.status == 0) {
+                    $('#img3').siblings('.loading_icon').remove();
+                    $('#img3').show();
+                    layer.msg(ret.info);
+                } else {
+                    console.log(ret);
+                    $('#icon2').val(ret.data.url);
+                    $("#img3").attr('src', ret.data.thumb);
+                    setTimeout(function () {
+                        $("#img3").show();
+                        $('#img3').siblings('.loading_icon').remove();
+                    }, 100);
+                }
+
+                //$( '#'+file.id ).find('p.state').text('已上传');
+            });
+
+            // 文件上传失败，显示上传出错。
+            uploader.on('uploadError', function (file) {
+                $('#img3').siblings('.loading_icon').remove();
+                $("#img3").show();
+                layer.msg('上传出错');
+
+                //$( '#'+file.id ).find('p.state').text('上传出错');
+            });
+
+            // 完成上传完了，成功或者失败，先删除进度条。
+            uploader.on('uploadComplete', function (file) {
+                //$( '#'+file.id ).find('.progress').fadeOut();
+            });
+        }
+
+        function upload2() {
+            //调用上传图片
+            var uploader = WebUploader.create({
+                // 选完文件后，是否自动上传。
+                auto: false,
+                // swf文件路径
+                swf: SWF_URL,
+                // 文件接收服务端。
+                server: UPLOAD_URL,
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: {
+                    id: '#filePicker2',
+                    multiple: false
+                },
+                //限制图片数量
+                fileSizeLimit: 40 * 1024 * 1024,
+                fileSingleSizeLimit: 8 * 1024 * 1024,
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'jpg,gif,png,jpeg',
+                    mimeTypes: 'image/jpg,image/gif,image/png,image/jpeg'
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('error', function (handler) {
+                if (handler == 'Q_EXCEED_SIZE_LIMIT' || handler == 'F_EXCEED_SIZE') {
+                    layer.msg('上传图片最大不超过8M');
+                    return;
+                }
+            });
+
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                $('#img2').hide();
+                uploader.upload();
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file) {
+                $('#img2').after('<label class="loading_icon"></label>');
+
+                /*
+                 var $li = $( '#'+file.id ),
+                 $percent = $li.find('.progress .progress-bar');
+
+                 // 避免重复创建
+                 if ( !$percent.length ) {
+                 $percent = $('<div class="progress progress-striped active">' +
+                 '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                 '</div>' +
+                 '</div>').appendTo( $li ).find('.progress-bar');
+                 }
+
+                 $li.find('p.state').text('上传中');
+
+                 $percent.css( 'width', percentage * 100 + '%' );
+                 */
+            });
+
+            // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+            uploader.on('uploadSuccess', function (file, ret) {
+                if (ret.status == 0) {
+                    $('#img2').siblings('.loading_icon').remove();
+                    $('#img2').show();
+                    layer.msg(ret.info);
+                } else {
+                    $('#icon1').val(ret.data.url);
+                    $("#img2").attr('src', ret.data.thumb);
+                    setTimeout(function () {
+                        $("#img2").show();
+                        $('#img2').siblings('.loading_icon').remove();
+                    }, 100);
+                }
+
+                //$( '#'+file.id ).find('p.state').text('已上传');
+            });
+
+            // 文件上传失败，显示上传出错。
+            uploader.on('uploadError', function (file) {
+                $('#img2').siblings('.loading_icon').remove();
+                $("#img2").show();
+                layer.msg('上传出错');
+
+                //$( '#'+file.id ).find('p.state').text('上传出错');
+            });
+
+            // 完成上传完了，成功或者失败，先删除进度条。
+            uploader.on('uploadComplete', function (file) {
+                //$( '#'+file.id ).find('.progress').fadeOut();
+            });
+        }
+
+
+
+    
+        $(function () {
+            upload1();
+            upload2();
+            upload3();
+        });
+    </script>
+</block>
